@@ -1,0 +1,150 @@
+<!-- Contact section-->
+<section class="bg-light py-5">
+  <div class="container px-5 my-5 px-5">
+    <div class="text-center mb-5">
+      <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-envelope"></i></div>
+      <h2 class="fw-bolder">Register</h2>
+      <p class="lead mb-0">Create user profile</p>
+    </div>
+    <div class="row gx-5 justify-content-center">
+      <div class="col-lg-6">
+        <!-- * * * * * * * * * * * * * * *-->
+        <!-- * * SB Forms Contact Form * *-->
+        <!-- * * * * * * * * * * * * * * *-->
+        <!-- This form is pre-integrated with SB Forms.-->
+        <!-- To make this form functional, sign up at-->
+        <!-- https://startbootstrap.com/solution/contact-forms-->
+        <!-- to get an API token!-->
+        <form id="contactForm" (ngSubmit)="onSubmit()" [formGroup]="registerForm" data-sb-form-api-token="API_TOKEN">
+          <!-- First Name input-->
+          <div class="form-floating mb-3">
+            <input class="form-control"
+                   id="first-name"
+                   name="firstName"
+                   formControlName="firstName"
+                   type="text"
+                   placeholder="Enter your name..."
+                   required
+                   data-sb-validations="required"/>
+            <label for="first-name">First name</label>
+            <span *ngIf="registerForm.get('firstName')?.touched">
+            <div *ngIf="registerForm.get('firstName')?.errors?.['required']"
+                 style="color: #de2d2d">First name is required.</div>
+
+            </span>
+          </div>
+          <!--Last Name input-->
+          <div class="form-floating mb-3">
+            <input class="form-control"
+                   id="last-name"
+                   name="lastName"
+                   formControlName="lastName"
+                   type="text"
+                   placeholder="Enter your name..."
+                   required
+                   data-sb-validations="required"/>
+            <label for="last-name">Last name</label>
+            <span *ngIf="registerForm.get('lastName')?.touched">
+            <div *ngIf="registerForm.get('lastName')?.errors?.['required']"
+                 style="color: #de2d2d">Last name is required.</div>
+
+            </span>
+          </div>
+          <!--City input-->
+          <div class="form-floating mb-3">
+            <input class="form-control"
+                   id="city"
+                   name="city"
+                   formControlName="city"
+                   type="text"
+                   placeholder="Enter your city..."
+                   required
+                   data-sb-validations="required"/>
+            <label for="city">City</label>
+            <span *ngIf="registerForm.get('city')?.touched">
+            <div *ngIf="registerForm.get('city')?.errors?.['required']"
+                 style="color: #de2d2d">City is required.</div>
+            </span>
+          </div>
+          <!--Years input-->
+          <div class="form-floating mb-3">
+            <input class="form-control"
+                   id="years"
+                   name="years"
+                   formControlName="years"
+                   type="number"
+                   placeholder="Enter your years..."
+                   required
+                   data-sb-validations="required"/>
+            <label for="years">Years</label>
+            <span *ngIf="registerForm.get('years')?.touched">
+            <div *ngIf="registerForm.get('years')?.errors?.['required']"
+                 style="color: #de2d2d">Years is required.</div>
+            </span>
+          </div>
+          <!-- Email address input-->
+          <!--          <div class="form-floating mb-3">-->
+          <!--            <input class="form-control" id="email" type="email" placeholder="name@example.com" data-sb-validations="required,email" />-->
+          <!--            <label for="email">Email address</label>-->
+          <!--            <div class="invalid-feedback" data-sb-feedback="email:required">An email is required.</div>-->
+          <!--            <div class="invalid-feedback" data-sb-feedback="email:email">Email is not valid.</div>-->
+          <!--          </div>-->
+          <!-- Phone number input-->
+          <div class="form-floating mb-3">
+            <input class="form-control"
+                   id="phone"
+                   name="phone"
+                   formControlName="phone"
+                   type="tel"
+                   placeholder="(123) 456-7890"
+                   data-sb-validations="required"/>
+            <label for="phone">Phone number</label>
+            <span *ngIf="registerForm.get('phone')?.touched">
+            <div *ngIf="registerForm.get('phone')?.errors?.['required']"
+                 class="is-invalid"
+                 style="color: #de2d2d"
+            >A phone number is required.</div>
+            </span>
+          </div>
+          <!-- Previous Accidents dropdown -->
+          <div class="form-floating mb-3">
+            <select class="form-control"
+                    id="previous-accidents"
+                    name="previousAccidents"
+                    formControlName="previousAccidents"
+                    required>
+              >
+              <option ngValue="" disabled>Select an option</option> <!-- Placeholder option -->
+              <option ngValue="true">Yes</option>
+              <option ngValue="false">No</option>
+            </select>
+            <label for="previous-accidents">Previous Accidents</label>
+            <span *ngIf="registerForm.get('previousAccidents')?.touched">
+    <div *ngIf="registerForm.get('previousAccidents')?.errors?.['required']"
+         style="color: #de2d2d">Please select an option.</div>
+  </span>
+          </div>
+          <p>Selected Value: {{ registerForm.get('previousAccidents')?.value }}</p>
+
+          <!-- Message input-->
+          <!--          <div class="form-floating mb-3">-->
+          <!--            <textarea class="form-control" id="message" type="text" placeholder="Enter your message here..." style="height: 10rem" data-sb-validations="required"></textarea>-->
+          <!--            <label for="message">Message</label>-->
+          <!--            <div class="invalid-feedback" data-sb-feedback="message:required">A message is required.</div>-->
+          <!--          </div>-->
+
+          <!-- Submit Button-->
+          <div class="d-grid">
+            <button class="btn btn-primary btn-lg disabled"
+                    id="registerButton"
+                    [style]="{ backgroundColor: registerForm.invalid ? 'grey' : '' }"
+                    [disabled]="registerForm.invalid"
+                    type="submit">Submit
+            </button>
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </div>
+</section>
