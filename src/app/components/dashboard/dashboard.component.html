@@ -1,0 +1,22 @@
+<div class="container my-5">
+  <h2 class="text-center mb-4">Car Dashboard</h2>
+
+  <!-- Cards Row for displaying cars -->
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+    <!-- Iterate over cars and display each car as a card -->
+    <div class="col" *ngFor="let car of cars">
+      <div class="card h-100">
+        <img [src]="car.id" class="card-img-top" alt="Car Image">
+        <div class="card-body">
+          <h5 class="card-title">{{ car.brand }}</h5>
+          <p class="card-text">Model: {{ car.model }}</p>
+          <p class="card-text">Year: {{ car.year }}</p>
+          <p class="card-text">Price: ${{ car.pricePerDay }}</p>
+        </div>
+        <div class="card-footer text-muted">
+          <small>Available for rent</small>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
