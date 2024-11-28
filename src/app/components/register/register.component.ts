@@ -47,14 +47,22 @@ export class RegisterComponent {
     };
 
     this.userService.register(user).subscribe(
-      (res)=>{
+      (res) => {
         this.router.navigate(['/']);
         this.toastrService.success('Register successfully!');
       },
-      (err)=>{
-        this.toastrService.error(err.message);
+      (err) => {
+        console.log(err)
+        let code: number = err.error.code;
+        let status: string = err.error.status;
+        let errors: string[] = err.error.errors;
+
+        this.toastrService.error(`${status} - ${code}`);
+        errors.forEach(error => {
+          this.toastrService.error(error);
+        });
       }
-    )
+    );
 
   }
 }
