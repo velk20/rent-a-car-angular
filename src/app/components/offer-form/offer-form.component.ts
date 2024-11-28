@@ -9,7 +9,7 @@ import {
 } from "@angular/forms";
 import {NgClass, NgIf} from "@angular/common";
 import {ActivatedRoute, Router} from "@angular/router";
-import {Offer} from "../../models/offer";
+import {CreateOffer} from "../../models/createOffer";
 import {ToastrService} from "ngx-toastr";
 
 @Component({
@@ -48,7 +48,7 @@ export class OfferFormComponent {
   }
 
   onSubmit() {
-    const newOffer: Offer = {
+    const newOffer: CreateOffer = {
       carId: this.carId,
       userId: this.userId,
       startDate: this.dateForm.value.startDate,

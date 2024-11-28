@@ -46,7 +46,7 @@ export class RegisterComponent {
       previousAccidents: this.registerForm.value.previousAccidents || false,
     };
 
-    this.userService.register(user).subscribe(
+    this.userService.createUser(user).subscribe(
       (res) => {
         this.router.navigate(['/']);
         this.toastrService.success('Register successfully!');
