@@ -80,6 +80,8 @@
             <span *ngIf="registerForm.get('years')?.touched">
             <div *ngIf="registerForm.get('years')?.errors?.['required']"
                  style="color: #de2d2d">Years is required.</div>
+              <div *ngIf="registerForm.get('years')?.errors?.['minimumAge']"
+                   style="color: #de2d2d">Years must be more or equal to 18.</div>
             </span>
           </div>
           <!-- Email address input-->
@@ -107,24 +109,36 @@
             </span>
           </div>
           <!-- Previous Accidents dropdown -->
-          <div class="form-floating mb-3">
-            <select class="form-control"
-                    id="previous-accidents"
-                    name="previousAccidents"
-                    formControlName="previousAccidents"
-                    required>
-              >
-              <option ngValue="" disabled>Select an option</option> <!-- Placeholder option -->
-              <option ngValue="true">Yes</option>
-              <option ngValue="false">No</option>
-            </select>
-            <label for="previous-accidents">Previous Accidents</label>
+          <div class="mb-3">
+            <label class="form-label d-block" for="previous-accidents">Previous Accidents</label>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="previousAccidents"
+                id="previousAccidentsYes"
+                [value]="true"
+                formControlName="previousAccidents"
+              />
+              <label class="form-check-label" for="previousAccidentsYes">Yes</label>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="previousAccidents"
+                id="previousAccidentsNo"
+                [value]="false"
+                formControlName="previousAccidents"
+              />
+              <label class="form-check-label" for="previousAccidentsNo">No</label>
+            </div>
             <span *ngIf="registerForm.get('previousAccidents')?.touched">
-    <div *ngIf="registerForm.get('previousAccidents')?.errors?.['required']"
-         style="color: #de2d2d">Please select an option.</div>
+    <div *ngIf="registerForm.get('previousAccidents')?.errors?.['required']" style="color: #de2d2d">
+      Please select an option.
+    </div>
   </span>
           </div>
-          <p>Selected Value: {{ registerForm.get('previousAccidents')?.value }}</p>
 
           <!-- Message input-->
           <!--          <div class="form-floating mb-3">-->
@@ -135,7 +149,7 @@
 
           <!-- Submit Button-->
           <div class="d-grid">
-            <button class="btn btn-primary btn-lg disabled"
+            <button class="btn btn-primary btn-lg"
                     id="registerButton"
                     [style]="{ backgroundColor: registerForm.invalid ? 'grey' : '' }"
                     [disabled]="registerForm.invalid"
