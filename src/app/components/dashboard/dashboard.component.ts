@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {CarService} from "../../services/car.service";
 import {Car} from "../../models/car";
 import {NgForOf} from "@angular/common";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-dashboard',
@@ -15,7 +16,8 @@ import {NgForOf} from "@angular/common";
 export class DashboardComponent {
   cars: Car[] = [];
 
-  constructor(private carService: CarService) {
+  constructor(private carService: CarService,
+              private router: Router) {
   }
 
   ngOnInit() {
@@ -24,5 +26,9 @@ export class DashboardComponent {
           this.cars = res.data as Car[];
         }
       )
+  }
+
+  goToOfferForm(car: Car) {
+    this.router.navigate(['/form'], {queryParams: {carData: JSON.stringify(car)}});
   }
 }

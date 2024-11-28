@@ -14,4 +14,5 @@ export class CarService {
   getAllCarsByUser(): Observable<AppResponse>{
     return this.http.get<AppResponse>(`${Constant.CARS_URL}/user/1`)
   }
+
 }

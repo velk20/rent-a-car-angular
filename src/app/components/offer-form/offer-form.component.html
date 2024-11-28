@@ -1,0 +1,39 @@
+<div class="container mt-5">
+  <h2 class="text-center">Date Form</h2>
+  <form [formGroup]="dateForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="startDate">Start Date</label>
+      <input
+        type="date"
+        id="startDate"
+        class="form-control"
+        formControlName="startDate"
+        required
+        [ngClass]="{'is-invalid': dateForm.controls['startDate'].invalid && dateForm.controls['startDate'].touched}"
+      />
+      <div *ngIf="dateForm.controls['startDate'].invalid && dateForm.controls['startDate'].touched" class="invalid-feedback">
+        Start date is required.
+      </div>
+    </div>
+
+    <div class="form-group mt-3">
+      <label for="endDate">End Date</label>
+      <input
+        type="date"
+        id="endDate"
+        class="form-control"
+        formControlName="endDate"
+        required
+        [ngClass]="{'is-invalid': dateForm.controls['endDate'].invalid && dateForm.controls['endDate'].touched}"
+      />
+      <div *ngIf="dateForm.controls['endDate'].invalid && dateForm.controls['endDate'].touched" class="invalid-feedback">
+        End date is required.
+      </div>
+      <div *ngIf="dateForm.hasError('endDateBeforeStartDate')" class="invalid-feedback">
+        End date must be after start date.
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary mt-3" [disabled]="dateForm.invalid">Submit</button>
+  </form>
+</div>
