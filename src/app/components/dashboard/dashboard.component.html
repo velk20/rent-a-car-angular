@@ -6,7 +6,8 @@
     <!-- Iterate over cars and display each car as a card -->
     <div class="col" *ngFor="let car of cars">
       <div class="card h-100">
-        <img src="https://www.auto-data.net/img/logos2/{{car.brand}}.png"
+        <img [src]="'https://www.auto-data.net/img/logos2/'+car.brand+'.png'"
+             (error)="onImageError($event)"
              class="card-img-top"
              alt="Car Image">
         <div class="card-body">

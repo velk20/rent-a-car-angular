@@ -31,4 +31,11 @@ export class DashboardComponent {
   goToOfferForm(car: Car) {
     this.router.navigate(['/form'], {queryParams: {carData: JSON.stringify(car)}});
   }
+
+  protected readonly HTMLImageElement = HTMLImageElement;
+
+  onImageError(event: Event): void {
+    const imgElement = event.target as HTMLImageElement;
+    imgElement.src = 'https://via.placeholder.com/200x200.png?text=Car+Image';
+  }
 }

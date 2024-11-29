@@ -11,6 +11,7 @@ import {NgClass, NgIf} from "@angular/common";
 import {ActivatedRoute, Router} from "@angular/router";
 import {CreateOffer} from "../../models/createOffer";
 import {ToastrService} from "ngx-toastr";
+import {OfferService} from "../../services/offer.service";
 
 @Component({
   selector: 'app-offer-form',
@@ -30,6 +31,7 @@ export class OfferFormComponent {
 
   constructor(private fb: FormBuilder,
               private router: ActivatedRoute,
+              private offerService: OfferService,
               private toastr: ToastrService) {
     this.dateForm = this.fb.group({
       startDate: ['', [Validators.required]],
@@ -55,7 +57,14 @@ export class OfferFormComponent {
       endDate: this.dateForm.value.endDate,
     }
 
-    console.log(newOffer);
+    this.offerService.createOffer(newOffer).subscribe(
+      (response) => {
+        this.toastr.success(response.message);
+      },
+      (error) => {
+        this.toastr.error(error.message);
+      }
+    )
   }
 
   endDateValidator(control: AbstractControl): ValidationErrors | null {

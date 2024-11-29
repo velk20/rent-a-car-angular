@@ -1,0 +1,39 @@
+<!-- Pricing section-->
+<section class="bg-light py-5 border-bottom">
+  <div class="container px-5 my-5">
+    <div class="text-center mb-5">
+      <h2 class="fw-bolder">All your offers</h2>
+      <p class="lead mb-0">You can choose which offer to accept</p>
+    </div>
+    <div class="row gx-5 justify-content-center">
+
+      <!-- Pricing card pro-->
+      <div class="col-lg-6 col-xl-4" *ngFor="let offer of offers">
+        <div class="card mb-5 mb-xl-0">
+          <div class="card-body p-5">
+            <div class="mb-3">
+              <span class="display-4 fw-bold">Offer</span>
+              <span class="text-muted">#{{ offer.id}}</span>
+            </div>
+            <ul class="list-unstyled mb-4">
+              <li class="mb-2">
+                <i class="bi bi-check text-primary"></i>
+                Start date: {{offer.startDate}}
+              </li>
+              <li class="mb-2">
+                <i class="bi bi-check text-primary"></i>
+                End date: {{offer.endDate}}
+              </li>
+              <li class="mb-2">
+                <i class="bi bi-check text-primary"></i>
+                Car id: {{offer.carId}}
+              </li>
+            </ul>
+            <div class="d-grid"><a class="btn btn-success" (click)="acceptOffer(offer.id)">Accept offer</a></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
