@@ -8,5 +8,8 @@ export interface CreateOffer {
 export interface Offer extends CreateOffer {
   id: number;
   accepted: boolean;
+  price: number;
+  additionalPrice: number;
+  totalPrice: number;
 }
 

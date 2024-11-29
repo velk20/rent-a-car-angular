@@ -26,7 +26,23 @@
               </li>
               <li class="mb-2">
                 <i class="bi bi-check text-primary"></i>
-                Car id: {{offer.carId}}
+                Car brand: {{getCarBrand(offer.carId)}}
+              </li>
+              <li class="mb-2">
+                <i class="bi bi-check text-primary"></i>
+                Car model: {{getCarModel(offer.carId)}}
+              </li>
+              <li class="mb-2">
+                <i class="bi bi-check text-primary"></i>
+                Price: {{offer.price}}$
+              </li>
+              <li class="mb-2">
+                <i class="bi bi-check text-primary"></i>
+                Additional price: {{offer.additionalPrice}}$
+              </li>
+              <li class="mb-2">
+                <i class="bi bi-check text-primary"></i>
+                Total price: {{offer.totalPrice}}$
               </li>
             </ul>
             @if (offer.accepted) {
