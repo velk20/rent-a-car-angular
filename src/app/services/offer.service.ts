@@ -3,7 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {AppResponse, AppResponseWithMessage, AppResponseWithNoData} from "../utils/app.response";
 import {Constant} from "../utils/constant";
-import {CreateOffer} from "../models/createOffer";
+import {CreateOffer, Offer} from "../models/offer";
 
 @Injectable({
   providedIn: 'root'

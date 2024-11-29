@@ -21,7 +21,7 @@ export class DashboardComponent {
   }
 
   ngOnInit() {
-      this.carService.getAllCarsByUser().subscribe(
+      this.carService.getAllCarsByUser(1).subscribe(
         (res)=>{
           this.cars = res.data as Car[];
         }

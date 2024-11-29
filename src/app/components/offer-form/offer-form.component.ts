@@ -9,7 +9,7 @@ import {
 } from "@angular/forms";
 import {NgClass, NgIf} from "@angular/common";
 import {ActivatedRoute, Router} from "@angular/router";
-import {CreateOffer} from "../../models/createOffer";
+import {CreateOffer, Offer} from "../../models/offer";
 import {ToastrService} from "ngx-toastr";
 import {OfferService} from "../../services/offer.service";
 

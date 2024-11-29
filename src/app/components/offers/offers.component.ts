@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import {OfferService} from "../../services/offer.service";
-import {Offer} from "../../models/createOffer";
+import {Offer} from "../../models/offer";
 import {NgForOf} from "@angular/common";
 import {of} from "rxjs";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-offers',
@@ -16,7 +17,8 @@ import {of} from "rxjs";
 export class OffersComponent {
   offers: Offer[] = [];
 
-  constructor(private offerService: OfferService) {
+  constructor(private offerService: OfferService,
+              private toastr: ToastrService,) {
   }
 
   ngOnInit() {
@@ -28,8 +30,15 @@ export class OffersComponent {
   protected readonly of = of;
 
   acceptOffer(id: number) {
-    this.offerService.acceptOffer(id).subscribe(offer => {
-
+    this.offerService.acceptOffer(id).subscribe(res => {
+      const offer = this.offers.find(offer => offer.id === id);
+      if (offer) {
+        offer.accepted = true;
+      }
+      this.toastr.success('Offer accepted');
+    }, err => {
+      this.toastr.error('Error while accepting offer');
+      console.log(err)
     })
   }
 }

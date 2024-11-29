@@ -12,8 +12,8 @@ export class CarService {
   constructor(private http: HttpClient) {
   }
 
-  getAllCarsByUser(): Observable<AppResponse>{
-    return this.http.get<AppResponse>(`${Constant.CARS_URL}/user/1`)
+  getAllCarsByUser(userId: number): Observable<AppResponse>{
+    return this.http.get<AppResponse>(`${Constant.CARS_URL}/user/${userId}`)
   }
 
   getCarById(id: number): Observable<AppResponse>{

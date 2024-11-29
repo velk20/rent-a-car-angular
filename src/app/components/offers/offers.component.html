@@ -29,7 +29,11 @@
                 Car id: {{offer.carId}}
               </li>
             </ul>
-            <div class="d-grid"><a class="btn btn-success" (click)="acceptOffer(offer.id)">Accept offer</a></div>
+            @if (offer.accepted) {
+              <div class="d-grid"><a class="btn btn-danger" disabled="">Offer accepted</a></div>
+            } @else {
+              <div class="d-grid"><a class="btn btn-success" (click)="acceptOffer(offer.id)">Accept offer</a></div>
+            }
           </div>
         </div>
       </div>
