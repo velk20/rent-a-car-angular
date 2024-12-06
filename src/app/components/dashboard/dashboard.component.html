@@ -17,8 +17,19 @@
           <p class="card-text">City: {{ car.city }}</p>
           <p class="card-text">Price per day: ${{ car.pricePerDay }}</p>
         </div>
-        <div class="card-footer text-muted bg-success">
-          <button class="btn btn-warning" (click)="goToOfferForm(car)" style="color: black; border: none; background: none;">
+        <div *ngIf="!isLoggedIn()" class="card-footer text-muted bg-danger">
+          <button
+                  class="btn btn-warning"
+                  (click)="redirectToLogin()"
+                  style="color: black; border: none; background: none;">
+                   Login to make offer
+          </button>
+        </div>
+        <div *ngIf="isLoggedIn()" class="card-footer text-muted bg-success">
+          <button
+                  class="btn btn-warning"
+                  (click)="goToOfferForm(car)"
+                  style="color: black; border: none; background: none;">
             Make me an offer
           </button>
         </div>

@@ -73,11 +73,10 @@ export class RegisterComponent {
       },
       (err) => {
         console.log(err)
-        let code: number = err.error.code;
-        let status: string = err.error.status;
+        let message: number = err.error.message;
         let errors: string[] = err.error.errors;
 
-        this.toastrService.error(`${status} - ${code}`);
+        this.toastrService.error(`${message}`);
         errors.forEach(error => {
           this.toastrService.error(error);
         });

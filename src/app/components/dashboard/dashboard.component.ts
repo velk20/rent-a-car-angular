@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {CarService} from "../../services/car.service";
 import {Car} from "../../models/car";
-import {NgForOf} from "@angular/common";
+import {NgForOf, NgIf} from "@angular/common";
 import {Router} from "@angular/router";
 import {AuthService} from "../../services/auth.service";
 import {User} from "../../models/user";
@@ -10,7 +10,8 @@ import {User} from "../../models/user";
   selector: 'app-dashboard',
   standalone: true,
   imports: [
-    NgForOf
+    NgForOf,
+    NgIf
   ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
@@ -44,6 +45,10 @@ export class DashboardComponent {
 
   }
 
+  isLoggedIn(){
+    return this.authService.isLoggedIn();
+  }
+
   goToOfferForm(car: Car) {
     this.router.navigate(['/form'], {queryParams: {carData: JSON.stringify(car)}});
   }
@@ -53,5 +58,9 @@ export class DashboardComponent {
   onImageError(event: Event): void {
     const imgElement = event.target as HTMLImageElement;
     imgElement.src = 'https://via.placeholder.com/200x200.png?text=Car+Image';
+  }
+
+  redirectToLogin() {
+    this.router.navigate(['/login']);
   }
 }
