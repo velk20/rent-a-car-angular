@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {RegisterUser, User} from "../models/user";
+import {LoginUser, RegisterUser, User} from "../models/user";
 import {Observable} from "rxjs";
 import {AppResponse, AppResponseWithMessage, AppResponseWithNoData} from "../utils/app.response";
 import {Constant} from "../utils/constant";
@@ -20,8 +20,12 @@ export class UserService {
     return this.http.get<AppResponse>(Constant.CARS_URL);
   }
 
-  createUser(user: RegisterUser): Observable<AppResponseWithNoData>{
-    return this.http.post<AppResponseWithNoData>(Constant.USERS_URL, user);
+  loginUser(user: LoginUser): Observable<AppResponseWithMessage>{
+    return this.http.post<AppResponseWithMessage>(Constant.USERS_URL+"/login", user);
+  }
+
+  createUser(user: RegisterUser): Observable<AppResponseWithMessage>{
+    return this.http.post<AppResponseWithMessage>(Constant.USERS_URL, user);
   }
 
   updateUser(id: number, user: User): Observable<AppResponseWithMessage> {

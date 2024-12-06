@@ -12,6 +12,10 @@ export class CarService {
   constructor(private http: HttpClient) {
   }
 
+  getAllCars(): Observable<AppResponse>{
+    return this.http.get<AppResponse>(`${Constant.CARS_URL}`)
+  }
+
   getAllCarsByUser(userId: number): Observable<AppResponse>{
     return this.http.get<AppResponse>(`${Constant.CARS_URL}/user/${userId}`)
   }

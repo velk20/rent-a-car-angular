@@ -3,6 +3,8 @@ import {CarService} from "../../services/car.service";
 import {Car} from "../../models/car";
 import {NgForOf} from "@angular/common";
 import {Router} from "@angular/router";
+import {AuthService} from "../../services/auth.service";
+import {User} from "../../models/user";
 
 @Component({
   selector: 'app-dashboard',
@@ -15,17 +17,31 @@ import {Router} from "@angular/router";
 })
 export class DashboardComponent {
   cars: Car[] = [];
+  user: User|null = null;
 
   constructor(private carService: CarService,
+              private authService: AuthService,
               private router: Router) {
   }
 
   ngOnInit() {
-      this.carService.getAllCarsByUser(1).subscribe(
+    this.authService.getUser().subscribe(user => {
+      this.user = user;
+    });
+    if (this.user){
+      this.carService.getAllCarsByUser(this.user.id).subscribe(
         (res)=>{
           this.cars = res.data as Car[];
         }
       )
+    }else {
+      this.carService.getAllCars().subscribe(
+        (res)=>{
+          this.cars = res.data as Car[];
+        }
+      )
+    }
+
   }
 
   goToOfferForm(car: Car) {
