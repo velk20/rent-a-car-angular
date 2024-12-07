@@ -9,4 +9,5 @@ export interface CreateCar{
   city: string;
   year: number;
   pricePerDay: number;
+  imageUrl: string;
 }

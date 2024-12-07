@@ -38,6 +38,7 @@ export class DashboardComponent {
     }else {
       this.carService.getAllCars().subscribe(
         (res)=>{
+          console.log(res.data)
           this.cars = res.data as Car[];
         }
       )
@@ -56,6 +57,7 @@ export class DashboardComponent {
   protected readonly HTMLImageElement = HTMLImageElement;
 
   onImageError(event: Event): void {
+    console.log(event);
     const imgElement = event.target as HTMLImageElement;
     imgElement.src = 'https://via.placeholder.com/200x200.png?text=Car+Image';
   }

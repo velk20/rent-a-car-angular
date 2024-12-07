@@ -2,34 +2,25 @@
   <h2 class="text-center mb-4">Car Dashboard</h2>
 
   <!-- Cards Row for displaying cars -->
-  <div class="row row-cols-1 row-cols-md-3 g-4">
+  <div class="row row-cols-1 row-cols-md-4 g-4">
     <!-- Iterate over cars and display each car as a card -->
     <div class="col" *ngFor="let car of cars">
-      <div class="card h-100">
-        <img [src]="'https://www.auto-data.net/img/logos2/'+car.brand+'.png'"
+      <div class="card h-100 shadow-sm border-0 rounded">
+        <img [src]="car.imageUrl"
              (error)="onImageError($event)"
-             class="card-img-top"
+             class="card-img-top p-3 rounded"
              alt="Car Image">
-        <div class="card-body">
-          <h5 class="card-title">{{ car.brand }}</h5>
-          <p class="card-text">Model: {{ car.model }}</p>
-          <p class="card-text">Year: {{ car.year }}</p>
-          <p class="card-text">City: {{ car.city }}</p>
-          <p class="card-text">Price per day: ${{ car.pricePerDay }}</p>
+        <div class="card-body text-center">
+          <h5 class="card-title text-primary fw-bold">{{ car.brand }}</h5>
+          <p class="card-text"><strong>Model:</strong> {{ car.model }}</p>
+          <p class="card-text"><strong>Year:</strong> {{ car.year }}</p>
+          <p class="card-text"><strong>City:</strong> {{ car.city }}</p>
+          <p class="card-text text-success"><strong>Price per day:</strong> ${{ car.pricePerDay }}</p>
         </div>
-        <div *ngIf="!isLoggedIn()" class="card-footer text-muted bg-danger">
+        <div *ngIf="isLoggedIn()" class="card-footer text-center bg-light">
           <button
-                  class="btn btn-warning"
-                  (click)="redirectToLogin()"
-                  style="color: black; border: none; background: none;">
-                   Login to make offer
-          </button>
-        </div>
-        <div *ngIf="isLoggedIn()" class="card-footer text-muted bg-success">
-          <button
-                  class="btn btn-warning"
-                  (click)="goToOfferForm(car)"
-                  style="color: black; border: none; background: none;">
+            class="btn btn-warning btn-sm fw-bold"
+            (click)="goToOfferForm(car)">
             Make me an offer
           </button>
         </div>
